@@ -17,6 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from DIY_comunity.projects.views import ListUserProjects, AddProject, ProjectDetails, ProjectEdit, ProjectDelete
+
 urlpatterns = [
-    path('', include('DIY_comunity.common.urls'))
+    path('<str:username>/', ListUserProjects.as_view(), name='list user projects'),
+    path('add/', AddProject.as_view(), name="add project"),
+    path('<slug:slug>/', include([
+        path('', ProjectDetails.as_view(), name="project details"),
+        path('edit/', ProjectEdit.as_view(), name="project edit"),
+        path('delete/', ProjectDelete.as_view(), name="project delete"),
+    ]))
 ]
