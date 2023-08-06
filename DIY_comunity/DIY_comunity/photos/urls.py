@@ -18,5 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('DIY_comunity.common.urls'))
+    # path('add/', PhotoAddView.as_view(), name='photo add'),
+    # path('<int:pk>/', include([
+    #     path('edit/', PhotoEdit.as_view(), name='photo edit'),
+    #     path('delete/', PhotoDelete.as_view(), name='photo delete'),
+    # ]))
 ]
