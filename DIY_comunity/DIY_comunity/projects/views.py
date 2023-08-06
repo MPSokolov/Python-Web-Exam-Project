@@ -1,6 +1,10 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.shortcuts import render
+from django.forms import inlineformset_factory, modelformset_factory
+from django.urls import reverse_lazy
 from django.views import generic as views
+
+from DIY_comunity.projects.forms import ProjectForm
+from DIY_comunity.projects.models import ProjectModel
 
 
 def user_can_edit_or_delete(user, project):
@@ -20,11 +24,14 @@ class ProjectDetails(views.DetailView):
 
 
 class ProjectEdit(UserPassesTestMixin, views.UpdateView):
-    pass
+    model = ProjectModel
+    form_class = ProjectForm
+    template_name = 'projects/project-edit-page.html'  # Replace with your template
+    # success_url = reverse_lazy('project_list')
 
-    # def test_func(self):
-    #     project = self.get_object()
-    #     return user_can_edit_or_delete(self.request.user, project)
+    def test_func(self):
+        project = self.get_object()
+        return user_can_edit_or_delete(self.request.user, project)
 
 
 class ProjectDelete(UserPassesTestMixin, views.DeleteView):

@@ -17,10 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from DIY_comunity.photos.views import PhotoAdd, PhotoDelete
+
 urlpatterns = [
-    # path('add/', PhotoAddView.as_view(), name='photo add'),
-    # path('<int:pk>/', include([
-    #     path('edit/', PhotoEdit.as_view(), name='photo edit'),
-    #     path('delete/', PhotoDelete.as_view(), name='photo delete'),
-    # ]))
+    path('add/project/<slug:slug>/', PhotoAdd.as_view(), name='photo add'),
+    path('<int:pk>/delete/', PhotoDelete.as_view(), name='photo delete'),
 ]
