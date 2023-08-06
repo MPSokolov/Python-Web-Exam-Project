@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'DIY_comunity.common',
     'DIY_comunity.categories',
     'DIY_comunity.projects',
+    'DIY_comunity.photos',
 ]
 
 MIDDLEWARE = [
