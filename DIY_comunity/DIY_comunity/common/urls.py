@@ -14,9 +14,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+from .views import IndexView, like_functionality, comment_functionality, bookmark_functionality
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('DIY_comunity.common.urls'))
+    path('', IndexView.as_view(), name='index'),
+    path('like/<int:project_id>/', like_functionality, name='like'),
+    path('comment/<int:project_id>/', comment_functionality, name='comment'),
+    path('bookmark/<int:project_id>/', bookmark_functionality, name='bookmark'),
 ]
