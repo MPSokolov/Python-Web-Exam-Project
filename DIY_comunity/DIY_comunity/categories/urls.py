@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from DIY_comunity.categories.views import CategoriesListView, CategoryProjectsListView
+
 urlpatterns = [
-    path('', include('DIY_comunity.common.urls'))
+    path('', CategoriesListView.as_view(), name='categories list'),
+    path('<slug:slug>/', CategoryProjectsListView.as_view(), name='category projects list'),
 ]
