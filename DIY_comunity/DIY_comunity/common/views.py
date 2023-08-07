@@ -5,8 +5,8 @@ from django.views import generic as views
 
 # Create your views here.
 
-class IndexView(views.ListView):
-    pass
+class IndexView(views.TemplateView):
+    template_name = 'common/index.html'
 
 
 @login_required
