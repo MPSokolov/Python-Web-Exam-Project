@@ -5,6 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>Delete Profile</h1>
+  <p>Are you sure you want to delete your profile? This action cannot be undone.</p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete Profile" class="btn btn-danger">
+    <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+  </form>
 </body>
 </html>

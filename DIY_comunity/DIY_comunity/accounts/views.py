@@ -1,13 +1,16 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.mixins import AccessMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import AccessMixin, UserPassesTestMixin, LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login, get_user_model
 
 from DIY_comunity.accounts.models import ProfileModel
+
+UserModel = get_user_model()
 
 
 def user_can_edit_or_delete(user, profile):
@@ -57,22 +60,24 @@ class ProfileDetailsView(views.DetailView):
     pass
 
 
-class ProfileEditView(UserPassesTestMixin, views.UpdateView):
+class ProfileEditView(LoginRequiredMixin, views.UpdateView):
     template_name = 'accounts/profile-edit-page.html'
     model = ProfileModel
+    fields = ['first_name', 'last_name', 'date_of_birth', 'email', 'phone_number', 'about_me', 'profile_picture']
+
     # form_class = ProjectForm
 
-    def test_func(self):
-        profile = self.get_object()
-        return user_can_edit_or_delete(self.request.user, profile)
+    def get_object(self, queryset=None):
+        return self.request.user.profilemodel
+
+    # def get_success_url(self):
+    #     return reverse('profile details', kwargs={'pk': self.object.pk})
 
 
-class ProfileDeleteView(UserPassesTestMixin, views.DeleteView):
-    template_name = 'accounts/profile-edit-page.html'
-    model = ProfileModel
+class ProfileDeleteView(LoginRequiredMixin, views.DeleteView):
+    template_name = 'accounts/profile-delete-page.html'
+    model = UserModel
     success_url = reverse_lazy('index')
 
-    def test_func(self):
-        profile = self.get_object()
-        return user_can_edit_or_delete(self.request.user, profile)
-
+    def get_object(self, queryset=None):
+        return self.request.user
