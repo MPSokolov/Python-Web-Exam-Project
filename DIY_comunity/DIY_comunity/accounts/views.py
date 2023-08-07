@@ -1,12 +1,21 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import AccessMixin
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login, get_user_model
 
 
-class RegisterUserView(views.CreateView):
+class AnonymousRequiredMixin(AccessMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('index')  # Redirect to a URL when the user is logged in
+        return super().dispatch(request, *args, **kwargs)
+
+
+class RegisterUserView(AnonymousRequiredMixin, views.CreateView):
     template_name = 'accounts/register-page.html'
     form_class = UserCreationForm
 
@@ -30,7 +39,7 @@ class RegisterUserView(views.CreateView):
         return reverse_lazy('index')
 
 
-class LoginUserView(auth_views.LoginView):
+class LoginUserView(AnonymousRequiredMixin, auth_views.LoginView):
     template_name = 'accounts/login-page.html'
 
 
