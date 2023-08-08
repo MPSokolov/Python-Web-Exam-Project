@@ -7,6 +7,5 @@ from DIY_comunity.photos.models import PhotoModel
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = ProjectModel
-        exclude = ['created_at', 'updated_at', 'slug']
-
+        exclude = ['created_at', 'updated_at', 'slug', 'creator']
 

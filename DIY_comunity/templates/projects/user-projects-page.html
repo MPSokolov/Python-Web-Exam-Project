@@ -5,6 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>User Projects</h1>
+<ul>
+    {% for project in projects %}
+        <li>{{ project.title }}</li>
+        <!-- Display other project information as needed -->
+    {% endfor %}
+</ul>
 </body>
 </html>
