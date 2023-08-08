@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 
+from DIY_comunity.common.forms import CommentForm
 from DIY_comunity.projects.forms import ProjectForm
 from DIY_comunity.projects.models import ProjectModel
 
@@ -46,6 +47,11 @@ class ProjectDetails(views.DetailView):
     model = ProjectModel
     template_name = 'projects/project-details-page.html'
     context_object_name = 'project'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
 
 
 class ProjectEdit(UserPassesTestMixin, views.UpdateView):
