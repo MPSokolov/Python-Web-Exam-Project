@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Categories List</h1>
+<ul>
+    {% for category in categories %}
+        <li><a href="{% url 'category projects list' category.slug %}">{{ category.name }}</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>
