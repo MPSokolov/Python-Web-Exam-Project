@@ -13,5 +13,12 @@
 <p><strong>Phone Number:</strong> {{ object.phone_number }}</p>
 <p><strong>About me:</strong> {{ object.about_me }}</p>
 {#<p><strong>Profile pic:</strong> {{ object.profile_picture }}</p>#}
+
+<h2>Projects</h2>
+    <ul>
+        {% for project in object.user.projectmodel_set.all %}
+            <li><a href="{% url 'project details' project.slug %}">{{ project.title }}</a></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

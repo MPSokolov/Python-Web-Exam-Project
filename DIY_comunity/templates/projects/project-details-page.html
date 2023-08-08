@@ -13,5 +13,12 @@
 <p><strong>Creator:</strong> {{ project.creator }}</p>
 <p><strong>Created:</strong> {{ project.created_at }}</p>
 <p><strong>Last Updated:</strong> {{ project.updated_at }}</p>
+
+<h2>Photos</h2>
+<div class="photos">
+    {% for photo in project.photomodel_set.all %}
+        <img src="{{ photo.image.url }}" alt="Photo">
+    {% endfor %}
+</div>
 </body>
 </html>
