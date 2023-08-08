@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
 from DIY_comunity.common.forms import CommentForm
-from DIY_comunity.common.models import LikeModel
+from DIY_comunity.common.models import LikeModel, BookmarkModel
 from DIY_comunity.projects.models import ProjectModel
 
 
@@ -36,7 +37,22 @@ def like_functionality(request, project_id):
 
 @login_required
 def bookmark_functionality(request, project_id):
-    pass
+    project = ProjectModel.objects.get(pk=project_id)
+
+    kwargs = {
+        'project': project,
+        'user': request.user
+    }
+
+    bookmark_object = BookmarkModel.objects.filter(**kwargs).first()
+
+    if bookmark_object:
+        bookmark_object.delete()
+    else:
+        bookmark_object = BookmarkModel(**kwargs)
+        bookmark_object.save()
+
+    return redirect(request.META['HTTP_REFERER'] + f"#{project_id}")
 
 
 @login_required
@@ -52,3 +68,13 @@ def comment_functionality(request, project_id):
             new_comment_instance.save()
 
         return redirect(request.META['HTTP_REFERER'] + f"#{project_id}")
+
+
+class BookmarkedProjects(LoginRequiredMixin, views.ListView):
+    model = BookmarkModel
+    template_name = 'common/bookmarked-projects-page.html'
+    context_object_name = 'bookmarks'
+
+    def get_queryset(self):
+        user = self.request.user
+        return BookmarkModel.objects.filter(user=user)

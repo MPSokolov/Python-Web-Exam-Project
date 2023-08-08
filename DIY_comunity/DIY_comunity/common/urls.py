@@ -14,7 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from .views import IndexView, like_functionality, comment_functionality, bookmark_functionality
+from .views import IndexView, like_functionality, comment_functionality, bookmark_functionality, BookmarkedProjects
 from django.urls import path, include
 
 urlpatterns = [
@@ -22,4 +22,5 @@ urlpatterns = [
     path('like/<int:project_id>/', like_functionality, name='like'),
     path('comment/<int:project_id>/', comment_functionality, name='comment'),
     path('bookmark/<int:project_id>/', bookmark_functionality, name='bookmark'),
+    path('bookmarked/', BookmarkedProjects.as_view(), name='bookmarked projects')
 ]
