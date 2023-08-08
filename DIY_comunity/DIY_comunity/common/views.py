@@ -11,8 +11,10 @@ from DIY_comunity.projects.models import ProjectModel
 
 # Create your views here.
 
-class IndexView(views.TemplateView):
+class IndexView(views.ListView):
+    model = ProjectModel
     template_name = 'common/index.html'
+    context_object_name = 'projects'
 
 
 @login_required
