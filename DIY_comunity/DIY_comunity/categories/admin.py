@@ -7,3 +7,4 @@ from DIY_comunity.categories.models import CategoryModel
 @admin.register(CategoryModel)
 class CategoryAdmin(admin.ModelAdmin):
     readonly_fields = ['slug']
+    list_display = ['name', 'description']

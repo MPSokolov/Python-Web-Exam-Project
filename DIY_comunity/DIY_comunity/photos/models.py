@@ -12,4 +12,4 @@ class PhotoModel(models.Model):
     creator = models.ForeignKey(UserModel, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Photo for {self.project.title}"
+        return f"{self.image}"
