@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import AccessMixin, UserPassesTestMixin, LoginRe
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login, get_user_model
@@ -57,7 +57,13 @@ class LogoutUserView(auth_views.LogoutView):
 
 
 class ProfileDetailsView(views.DetailView):
-    pass
+    model = ProfileModel
+    template_name = 'accounts/profile-details-page.html'
+
+    def get_object(self, queryset=None):
+        username = self.kwargs['username']
+        user = get_object_or_404(UserModel, username=username)
+        return user.profilemodel
 
 
 class ProfileEditView(LoginRequiredMixin, views.UpdateView):
@@ -70,8 +76,8 @@ class ProfileEditView(LoginRequiredMixin, views.UpdateView):
     def get_object(self, queryset=None):
         return self.request.user.profilemodel
 
-    # def get_success_url(self):
-    #     return reverse('profile details', kwargs={'pk': self.object.pk})
+    def get_success_url(self):
+        return reverse('profile details', kwargs={'username': self.request.user.username})
 
 
 class ProfileDeleteView(LoginRequiredMixin, views.DeleteView):
