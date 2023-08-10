@@ -8,7 +8,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login, get_user_model
 
-from DIY_comunity.accounts.forms import ProfileForm, LoginForm
+from DIY_comunity.accounts.forms import ProfileForm, LoginForm, RegisterForm
 from DIY_comunity.accounts.models import ProfileModel
 
 UserModel = get_user_model()
@@ -27,7 +27,7 @@ class AnonymousRequiredMixin(AccessMixin):
 
 class RegisterUserView(AnonymousRequiredMixin, views.CreateView):
     template_name = 'accounts/register-page.html'
-    form_class = UserCreationForm
+    form_class = RegisterForm
 
     def form_valid(self, form):
         result = super().form_valid(form)
