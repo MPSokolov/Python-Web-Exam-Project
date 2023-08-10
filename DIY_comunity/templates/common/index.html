@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h2>Logged in user: {{ request.user }}</h2>
+{% extends 'base/base.html' %}
+{% block page_content %}
 
 <h1>Projects</h1>
 <ul>
@@ -13,5 +7,4 @@
         <li><a href="{% url 'project details' project.slug %}">{{ project.title }}</a></li>
     {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}

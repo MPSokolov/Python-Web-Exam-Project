@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Profile Details</h1>
-<p><strong>First Name:</strong> {{ object.first_name }}</p>
-<p><strong>Last Name:</strong> {{ object.last_name }}</p>
-<p><strong>Date of Birth:</strong> {{ object.date_of_birth }}</p>
-<p><strong>Email:</strong> {{ object.email }}</p>
-<p><strong>Phone Number:</strong> {{ object.phone_number }}</p>
-<p><strong>About me:</strong> {{ object.about_me }}</p>
-{#<p><strong>Profile pic:</strong> {{ object.profile_picture }}</p>#}
+{% extends 'base/base.html' %}
+{% block page_content %}
 
-<h2>Projects</h2>
+    <h1>Profile Details</h1>
+    <p><strong>First Name:</strong> {{ object.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ object.last_name }}</p>
+    <p><strong>Date of Birth:</strong> {{ object.date_of_birth }}</p>
+    <p><strong>Email:</strong> {{ object.email }}</p>
+    <p><strong>Phone Number:</strong> {{ object.phone_number }}</p>
+    <p><strong>About me:</strong> {{ object.about_me }}</p>
+    {#<p><strong>Profile pic:</strong> {{ object.profile_picture }}</p>#}
+
+    <h2>Projects</h2>
     <ul>
         {% for project in object.user.projectmodel_set.all %}
             <li><a href="{% url 'project details' project.slug %}">{{ project.title }}</a></li>
         {% endfor %}
     </ul>
-</body>
-</html>
+
+{% endblock %}

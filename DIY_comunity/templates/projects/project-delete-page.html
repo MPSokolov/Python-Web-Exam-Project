@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base/base.html' %}
+{% block page_content %}
+
 <h1>Delete Project</h1>
 <p>Are you sure you want to delete the project "{{ project.title }}"?</p>
 <form method="post">
@@ -12,5 +8,5 @@
     <button type="submit">Yes, Delete</button>
     <a href="{% url 'project details' slug=project.slug %}">Cancel</a>
 </form>
-</body>
-</html>
+
+{% endblock %}
