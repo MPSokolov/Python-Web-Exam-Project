@@ -16,19 +16,6 @@ def user_can_edit_or_delete(user, project):
     return user == project.creator
 
 
-# class ListUserProjects(views.ListView):
-#     model = ProjectModel
-#     template_name = 'projects/user-projects-page.html'
-#     context_object_name = 'projects'
-#
-#     # paginate_by = 10
-#
-#     def get_queryset(self):
-#         username = self.kwargs['username']
-#         user = get_object_or_404(UserModel, username=username)
-#         return user.projectmodel_set.order_by('-created_at')
-
-
 class AddProject(LoginRequiredMixin, views.CreateView):
     model = ProjectModel
     form_class = ProjectForm
