@@ -15,5 +15,5 @@ class CommentForm(forms.ModelForm):
                 })
         }
         labels = {
-            'content': '',  # Set the label to an empty string
+            'content': '',
         }

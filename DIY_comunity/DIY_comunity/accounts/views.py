@@ -8,7 +8,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login, get_user_model
 
-from DIY_comunity.accounts.forms import ProfileForm
+from DIY_comunity.accounts.forms import ProfileForm, LoginForm
 from DIY_comunity.accounts.models import ProfileModel
 
 UserModel = get_user_model()
@@ -51,6 +51,7 @@ class RegisterUserView(AnonymousRequiredMixin, views.CreateView):
 
 class LoginUserView(AnonymousRequiredMixin, auth_views.LoginView):
     template_name = 'accounts/login-page.html'
+    authentication_form = LoginForm
 
 
 class LogoutUserView(auth_views.LogoutView):

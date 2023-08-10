@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm, UsernameField
+
 from .models import ProfileModel
 
 
@@ -18,3 +20,14 @@ class ProfileForm(forms.ModelForm):
         #     'phone_number': 'Phone Number',
         #     'profile_picture': 'Profile Picture',
         # }
+
+
+class LoginForm(AuthenticationForm):
+    username = UsernameField(
+        widget=forms.TextInput(attrs={"autofocus": True, "class": 'form-control', 'placeholder': 'username'}))
+    password = forms.CharField(
+        label="Password",
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={"autocomplete": "current-password", "class": 'form-control', 'placeholder': 'password'}),
+    )
