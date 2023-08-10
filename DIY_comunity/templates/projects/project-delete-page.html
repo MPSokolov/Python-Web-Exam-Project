@@ -1,12 +1,14 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-<h1>Delete Project</h1>
-<p>Are you sure you want to delete the project "{{ project.title }}"?</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Yes, Delete</button>
-    <a href="{% url 'project details' slug=project.slug %}">Cancel</a>
-</form>
+    <div class="d-flex flex-column align-items-center">
+        <h1>Delete Project</h1>
+        <p>Are you sure you want to delete the project "{{ project.title }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a href="{% url 'project details' slug=project.slug %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
 
 {% endblock %}
