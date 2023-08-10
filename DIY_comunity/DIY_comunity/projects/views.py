@@ -51,6 +51,9 @@ class ProjectDetails(views.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comment_form'] = CommentForm()
+        context['comments'] = self.get_object().commentmodel_set.all().order_by('-created_at')
+        context['liked_by_user'] = self.get_object().likemodel_set.filter(user=self.request.user).exists()
+        context['bookmarked_by_user'] = self.get_object().bookmarkmodel_set.filter(user=self.request.user).exists()
         return context
 
 

@@ -10,5 +10,10 @@ class CommentForm(forms.ModelForm):
             'content': forms.Textarea(
                 attrs={
                     'placeholder': 'Add comment...',
+                    'class': "form-control",
+                    'style': 'height: 6rem;'
                 })
+        }
+        labels = {
+            'content': '',  # Set the label to an empty string
         }
