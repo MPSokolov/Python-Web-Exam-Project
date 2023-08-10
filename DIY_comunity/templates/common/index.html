@@ -1,10 +1,13 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-<h1>Projects</h1>
-<ul>
-    {% for project in projects %}
-        <li><a href="{% url 'project details' project.slug %}">{{ project.title }}</a></li>
-    {% endfor %}
-</ul>
+    <div class="d-flex flex-column align-items-center">
+        <h1 style="margin-bottom: 30px;">Projects</h1>
+
+        {% include 'base/project-cards-grid.html' %}
+
+        {% include 'base/project-paginator.html' %}
+
+    </div>
+
 {% endblock %}

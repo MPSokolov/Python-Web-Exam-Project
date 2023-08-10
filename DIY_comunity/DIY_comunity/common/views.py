@@ -15,6 +15,7 @@ class IndexView(views.ListView):
     model = ProjectModel
     template_name = 'common/index.html'
     context_object_name = 'projects'
+    paginate_by = 8
 
 
 @login_required

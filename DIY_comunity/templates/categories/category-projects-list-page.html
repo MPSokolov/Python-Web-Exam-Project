@@ -1,16 +1,22 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-<h1>{{ category.name }}</h1>
-<p>{{ category.description }}</p>
+    <div class="d-flex flex-column align-items-center">
+        <h1>{{ category.name }}</h1>
+        <p>{{ category.description }}</p>
 
-<h2>Linked Projects</h2>
-<ul>
-    {% for project in category.projectmodel_set.all %}
-        <li><a href="{% url 'project details' project.slug %}">{{ project.title }}</a> <a
-                href="{% url 'like' project.pk %}">Like</a> Likes:
-            {{ project.likemodel_set.count }} <a href="{% url 'bookmark' project.pk %}">Bookmark</a></li>
-    {% endfor %}
-</ul>
+        {% include 'base/project-cards-grid.html' %}
+
+        {% include 'base/project-paginator.html' %}
+
+    </div>
+
+    {#    <ul>#}
+    {#        {% for project in category.projectmodel_set.all %}#}
+    {#            <li><a href="{% url 'project details' project.slug %}">{{ project.title }}</a> <a#}
+    {#                    href="{% url 'like' project.pk %}">Like</a> Likes:#}
+    {#                {{ project.likemodel_set.count }} <a href="{% url 'bookmark' project.pk %}">Bookmark</a></li>#}
+    {#        {% endfor %}#}
+    {#    </ul>#}
 
 {% endblock %}
