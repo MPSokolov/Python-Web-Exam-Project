@@ -8,6 +8,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login, get_user_model
 
+from DIY_comunity.accounts.forms import ProfileForm
 from DIY_comunity.accounts.models import ProfileModel
 
 UserModel = get_user_model()
@@ -65,13 +66,16 @@ class ProfileDetailsView(views.DetailView):
         user = get_object_or_404(UserModel, username=username)
         return user.profilemodel
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['projects'] = self.get_object().user.projectmodel_set.all()
+        return context
+
 
 class ProfileEditView(LoginRequiredMixin, views.UpdateView):
     template_name = 'accounts/profile-edit-page.html'
     model = ProfileModel
-    fields = ['first_name', 'last_name', 'date_of_birth', 'email', 'phone_number', 'about_me', 'profile_picture']
-
-    # form_class = ProjectForm
+    form_class = ProfileForm
 
     def get_object(self, queryset=None):
         return self.request.user.profilemodel

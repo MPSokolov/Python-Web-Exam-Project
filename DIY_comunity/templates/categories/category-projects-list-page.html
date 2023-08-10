@@ -11,12 +11,4 @@
 
     </div>
 
-    {#    <ul>#}
-    {#        {% for project in category.projectmodel_set.all %}#}
-    {#            <li><a href="{% url 'project details' project.slug %}">{{ project.title }}</a> <a#}
-    {#                    href="{% url 'like' project.pk %}">Like</a> Likes:#}
-    {#                {{ project.likemodel_set.count }} <a href="{% url 'bookmark' project.pk %}">Bookmark</a></li>#}
-    {#        {% endfor %}#}
-    {#    </ul>#}
-
 {% endblock %}

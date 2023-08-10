@@ -1,20 +1,31 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-    <h1>Profile Details</h1>
-    <p><strong>First Name:</strong> {{ object.first_name }}</p>
-    <p><strong>Last Name:</strong> {{ object.last_name }}</p>
-    <p><strong>Date of Birth:</strong> {{ object.date_of_birth }}</p>
-    <p><strong>Email:</strong> {{ object.email }}</p>
-    <p><strong>Phone Number:</strong> {{ object.phone_number }}</p>
-    <p><strong>About me:</strong> {{ object.about_me }}</p>
-    {#<p><strong>Profile pic:</strong> {{ object.profile_picture }}</p>#}
+    <div class="d-flex align-items-start">
+        <div class="card ms-2" style="width: 18rem;">
+            {#            <img src="{{ object.profile_picture.url }}" class="card-img-top" alt="...">#}
+            <div class="square-box card-img-top">
+                <img src="{{ object.profile_picture.url }}"
+                     alt="Project Image"
+                     class="img-fluid">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ object.get_full_name }}</h5>
+                <p class="card-text">{{ object.about_me }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Date of Birth:</strong> {{ object.date_of_birth }}</li>
+                <li class="list-group-item"><strong>Email:</strong> {{ object.email }}</li>
+                <li class="list-group-item"><strong>Phone Number:</strong> {{ object.phone_number }}</li>
+            </ul>
+            <div class="card-footer">
+                Joined: {{ object.user.date_joined }}
+            </div>
+        </div>
 
-    <h2>Projects</h2>
-    <ul>
-        {% for project in object.user.projectmodel_set.all %}
-            <li><a href="{% url 'project details' project.slug %}">{{ project.title }}</a></li>
-        {% endfor %}
-    </ul>
-
+        <div class="d-flex flex-column align-items-center ms-auto me-auto">
+            <h2 style="margin-bottom: 30px;">Projects</h2>
+            {% include 'base/project-cards-grid.html' %}
+        </div>
+    </div>
 {% endblock %}
