@@ -17,6 +17,9 @@ class IndexView(views.ListView):
     context_object_name = 'projects'
     paginate_by = 8
 
+    def get_queryset(self):
+        return super().get_queryset().order_by('-created_at')
+
 
 @login_required
 def like_functionality(request, project_id):
