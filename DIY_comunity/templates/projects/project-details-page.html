@@ -1,37 +1,6 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-    {#<h1>{{ project.title }}</h1>#}
-    {#<p><strong>Description:</strong> {{ project.description }}</p>#}
-    {#<p><strong>Materials:</strong> {{ project.materials_used }}</p>#}
-    {#<p><strong>Steps:</strong> {{ project.steps }}</p>#}
-    {#<p><strong>Category:</strong> {{ project.category }}</p>#}
-    {#<p><strong>Creator:</strong> {{ project.creator }}</p>#}
-    {#<p><strong>Created:</strong> {{ project.created_at }}</p>#}
-    {#<p><strong>Last Updated:</strong> {{ project.updated_at }}</p>#}
-    {##}
-    {#<h2>Photos</h2>#}
-    {#<div class="photos">#}
-    {#    {% for photo in project.photomodel_set.all %}#}
-    {#        <img src="{{ photo.image.url }}" alt="Photo">#}
-    {#    {% endfor %}#}
-    {#</div>#}
-    {##}
-    {#<div class="comments">#}
-    {#    <h2>Comments</h2>#}
-    {#    <ul>#}
-    {#        {% for comment in project.commentmodel_set.all %}#}
-    {#            <li>{{ comment.content }}<br>Created at: {{ comment.created_at }}<br>Created by: {{ comment.user }}</li>#}
-    {#        {% endfor %}#}
-    {#    </ul>#}
-    {##}
-    {#    <h2>Add Comment</h2>#}
-    {#    <form method="post" action="{% url 'comment' project.pk %}">#}
-    {#        {% csrf_token %}#}
-    {#        {{ comment_form.as_p }}#}
-    {#        <button type="submit">Add Comment</button>#}
-    {#    </form>#}
-    {#</div>#}
     <div class="d-flex flex-column align-items-center">
         <div class="card mb-5" style="width: 70rem;">
             <div class="card-header">
