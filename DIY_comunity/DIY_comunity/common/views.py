@@ -76,8 +76,9 @@ def comment_functionality(request, project_id):
 class BookmarkedProjects(LoginRequiredMixin, views.ListView):
     model = BookmarkModel
     template_name = 'common/bookmarked-projects-page.html'
-    context_object_name = 'bookmarks'
+    context_object_name = 'projects'
 
     def get_queryset(self):
-        user = self.request.user
-        return BookmarkModel.objects.filter(user=user)
+        user_bookmarks = BookmarkModel.objects.filter(user=self.request.user)
+        projects = [bookmark.project for bookmark in user_bookmarks]
+        return projects
