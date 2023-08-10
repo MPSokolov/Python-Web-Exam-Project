@@ -22,9 +22,7 @@
                     <ul class="dropdown-menu">
                         {% load custom_tags %}
                         {% get_all_categories as categories %}
-                        <li><a class="dropdown-item"
-                               href="{% url 'categories list' %}">All categories</a>
-                        </li>
+
                         {% for category in categories %}
                             <li><a class="dropdown-item"
                                    href="{% url 'category projects list' slug=category.slug %}">{{ category.name }}</a>

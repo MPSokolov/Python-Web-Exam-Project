@@ -6,13 +6,6 @@ from DIY_comunity.projects.models import ProjectModel
 
 
 # Create your views here.
-
-class CategoriesListView(views.ListView):
-    model = CategoryModel
-    template_name = 'categories/categories-list-page.html'
-    context_object_name = 'categories'
-
-
 class CategoryProjectsListView(views.ListView):
     model = ProjectModel
     template_name = 'categories/category-projects-list-page.html'
