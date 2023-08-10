@@ -1,13 +1,18 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block page_content %}
 
     <div class="d-flex align-items-start">
         <div class="card ms-2" style="width: 18rem;">
-            {#            <img src="{{ object.profile_picture.url }}" class="card-img-top" alt="...">#}
             <div class="square-box card-img-top">
-                <img src="{{ object.profile_picture.url }}"
-                     alt="Project Image"
-                     class="img-fluid">
+                {% if object.profile_picture %}
+                    <img src="{{ object.profile_picture.url }}"
+                         alt="Profile picture"
+                         class="img-fluid">
+                {% else %}
+                    <img src="{% static 'images/default-profile-picture.jpg' %}" alt="Profile picture"
+                         class="img-fluid">
+                {% endif %}
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{ object.get_full_name }}</h5>
