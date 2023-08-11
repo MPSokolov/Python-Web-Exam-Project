@@ -9,17 +9,19 @@ class ProfileForm(forms.ModelForm):
         model = ProfileModel
         fields = ['first_name', 'last_name', 'date_of_birth', 'email', 'phone_number', 'about_me', 'profile_picture']
         widgets = {
-            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last'}),
+            'date_of_birth': forms.DateInput(
+                attrs={'type': 'date', 'class': 'form-control', 'placeholder': '01/01/2000'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'name@example.com'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '0123456789'}),
+            'about_me': forms.Textarea(
+                attrs={'class': 'form-control', 'placeholder': 'I am me', 'style': 'height: 6rem;'}),
+            'profile_picture': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
-        # labels = {
-        #     'location': 'Location',
-        #     'date_of_birth': 'Date of Birth',
-        #     'first_name': 'First Name',
-        #     'last_name': 'Last Name',
-        #     'email': 'Email',
-        #     'phone_number': 'Phone Number',
-        #     'profile_picture': 'Profile Picture',
-        # }
+        labels = {
+            'profile_picture': ''
+        }
 
 
 class LoginForm(AuthenticationForm):
