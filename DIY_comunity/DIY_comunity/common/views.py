@@ -75,6 +75,8 @@ def comment_functionality(request, project_id):
 
         return redirect(request.META['HTTP_REFERER'] + f"#{project_id}")
 
+    return redirect(reverse_lazy('index'))
+
 
 class BookmarkedProjects(LoginRequiredMixin, views.ListView):
     model = BookmarkModel
