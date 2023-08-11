@@ -14,7 +14,7 @@ class CategoryProjectsListView(views.ListView):
 
     def get_queryset(self):
         category_slug = self.kwargs['slug']
-        return ProjectModel.objects.filter(category__slug=category_slug)
+        return ProjectModel.objects.filter(category__slug=category_slug).order_by('-created_at')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
