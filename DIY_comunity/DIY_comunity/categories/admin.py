@@ -8,3 +8,4 @@ from DIY_comunity.categories.models import CategoryModel
 class CategoryAdmin(admin.ModelAdmin):
     readonly_fields = ['slug']
     list_display = ['name', 'description']
+    search_fields = ['name', 'description']
