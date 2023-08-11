@@ -11,4 +11,4 @@ class ProfileAdmin(admin.ModelAdmin):
     search_fields = ['user__username', 'first_name', 'last_name', 'email', 'phone_number']
     fieldsets = (('Personal info', {'fields': ('user', 'first_name', 'last_name', 'email')}),
                  ('Advanced options',
-                  {'classes': ('collapse',), 'fields': ('date_of_birth', 'phone_number', 'profile_picture',), }),)
+                  {'classes': ('collapse',), 'fields': ('date_of_birth', 'phone_number', 'about_me', 'profile_picture',), }),)
