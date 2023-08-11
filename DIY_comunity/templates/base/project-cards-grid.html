@@ -2,8 +2,8 @@
     <div class="row">
 
         {% for project in projects %}
-            <div class="col-md-3 mb-4">
-                <div class="card" style="width: 18rem;">
+            <div class="col mb-4">
+                <div class="card ms-auto me-auto" style="width: 18rem;">
                     <div class="square-box card-img-top">
                         <img src="{{ project.photomodel_set.first.image.url }}" class="img-fluid"
                              alt="Project image">
