@@ -15,5 +15,9 @@ class ProfileModel(models.Model):
     about_me = models.CharField(max_length=200, blank=True, null=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
 
+    class Meta:
+        verbose_name = "Profile"
+        verbose_name_plural = "Profiles"
+
     def __str__(self):
         return self.user.username

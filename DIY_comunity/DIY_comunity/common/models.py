@@ -19,11 +19,19 @@ class LikeModel(BaseModel):
     def __str__(self):
         return f"{self.user.username} liked {self.project.title}"
 
+    class Meta:
+        verbose_name = "Like"
+        verbose_name_plural = "Likes"
+
 
 class BookmarkModel(BaseModel):
 
     def __str__(self):
         return f"{self.user.username} bookmarked {self.project.title}"
+
+    class Meta:
+        verbose_name = "Bookmark"
+        verbose_name_plural = "Bookmarks"
 
 
 class CommentModel(models.Model):
@@ -34,3 +42,7 @@ class CommentModel(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.project.title}"
+
+    class Meta:
+        verbose_name = "Comment"
+        verbose_name_plural = "Comments"

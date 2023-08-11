@@ -13,3 +13,7 @@ class PhotoModel(models.Model):
 
     def __str__(self):
         return f"{self.image}"
+
+    class Meta:
+        verbose_name = "Photo"
+        verbose_name_plural = "Photos"

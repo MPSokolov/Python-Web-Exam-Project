@@ -7,6 +7,10 @@ class CategoryModel(models.Model):
     description = models.TextField()
     slug = models.SlugField(unique=True, max_length=100, blank=True, editable=False)
 
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
