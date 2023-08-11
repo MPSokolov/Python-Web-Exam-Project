@@ -1,11 +1,13 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-<h1>Add Photos to Project</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add Photos</button>
-</form>
+    <div class="d-flex flex-column align-items-center">
+        <h1 class="mb-3">Add Photo to Project</h1>
+        <form method="post" enctype="multipart/form-data" style="width: 40rem;" class="d-flex flex-column mb-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add Photos</button>
+        </form>
+    </div>
 
 {% endblock %}
