@@ -8,7 +8,9 @@
                          alt="Project image">
                     <div class="card-body">
                         <h5 class="card-title">{{ project.title }}</h5>
-                        <p class="card-text">{{ project.description }}</p>
+                        <p class="card-text">
+                            {{ project.description|slice:230 }}{% if project.description|length > 230 %}...{% endif %}
+                        </p>
                         <a href="{% url 'project details' slug=project.slug %}" class="btn btn-primary">View
                             project</a>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
