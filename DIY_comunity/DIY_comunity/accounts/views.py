@@ -21,7 +21,7 @@ def user_can_edit_or_delete(user, profile):
 class AnonymousRequiredMixin(AccessMixin):
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('index')  # Redirect to a URL when the user is logged in
+            return redirect('index')
         return super().dispatch(request, *args, **kwargs)
 
 

@@ -21,7 +21,6 @@ from DIY_comunity.projects.views import AddProject, ProjectDetails, ProjectEdit,
 
 urlpatterns = [
     path('add/', AddProject.as_view(), name="add project"),
-    # path('<str:username>/', ListUserProjects.as_view(), name='list user projects'),
     path('<slug:slug>/', include([
         path('', ProjectDetails.as_view(), name="project details"),
         path('edit/', ProjectEdit.as_view(), name="project edit"),

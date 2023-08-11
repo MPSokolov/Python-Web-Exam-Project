@@ -14,7 +14,7 @@ def user_can_add_or_delete(user, project):
 
 class PhotoAdd(UserPassesTestMixin, views.CreateView):
     model = PhotoModel
-    template_name = 'photos/photo-add-page.html'  # Replace with your template name
+    template_name = 'photos/photo-add-page.html'
     form_class = PhotoForm
 
     def get_form(self, *args, **kwargs):
