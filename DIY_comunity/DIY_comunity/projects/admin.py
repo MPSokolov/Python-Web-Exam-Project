@@ -10,6 +10,7 @@ class ProjectModelAdmin(admin.ModelAdmin):
     list_display = ['title', 'description', 'created_at', 'updated_at', 'creator', 'category', 'project_pictures']
     search_fields = ['title', 'description', 'creator__username']
     list_filter = ['category', 'creator']
+    fields = ['title', 'description', 'materials_used', 'steps', ('creator', 'category'), 'slug']
 
     @staticmethod
     def project_pictures(obj):

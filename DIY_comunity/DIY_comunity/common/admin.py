@@ -19,4 +19,4 @@ class BookmarkAdmin(admin.ModelAdmin):
 @admin.register(CommentModel)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['user', 'project', 'content']
-    search_fields = ['user__username', 'project__title']
+    search_fields = ['user__username', 'project__title', 'content']
