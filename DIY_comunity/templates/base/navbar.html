@@ -56,6 +56,11 @@
                             <li><a class="dropdown-item"
                                    href="{% url 'logout user' %}">Log out</a>
                             </li>
+                            {% if request.user.is_staff %}
+                                <li><a class="dropdown-item"
+                                       href="{% url 'admin:index' %}">Admin site</a>
+                                </li>
+                            {% endif %}
                         </ul>
                     </li>
                 {% endif %}

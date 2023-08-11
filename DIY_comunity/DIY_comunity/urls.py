@@ -21,7 +21,7 @@ from django.urls import path, include
 from django.views.defaults import permission_denied
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin site'),
     path('', include('DIY_comunity.common.urls')),
     path('accounts/', include('DIY_comunity.accounts.urls')),
     path('categories/', include('DIY_comunity.categories.urls')),
